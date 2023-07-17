@@ -1,5 +1,7 @@
 import json
 
+from loguru import logger
+
 from app.models import CargoType
 
 
@@ -14,4 +16,4 @@ async def load_tariff_to_db(filename):
             try:
                 await CargoType.get_or_create(name=cargo_type, rate=rate, date=date)
             except Exception as e:
-                print(f"Ошибка при создании объекта CargoType: {e}")
+                logger.error(f"Error creating tariff: {e}")

@@ -1,7 +1,8 @@
+import tortoise
 from fastapi import APIRouter
+from loguru import logger
 
 from app.models import CargoType, InsuranceRequest
-import tortoise
 
 router = APIRouter()
 
@@ -19,6 +20,7 @@ async def calculate_insurance(declared_value: float, cargo_type: str, date: str)
         return {"insurance_cost": insurance_cost}
     except tortoise.exceptions.DoesNotExist:
         return {"error": "Invalid cargo type or date"}
-    except Exception as e:
-        return {"error": str(e)}
 
+    except Exception as e:
+        logger.error(f"Error calculating insurance: {e}")
+        return {"error": str(e)}
