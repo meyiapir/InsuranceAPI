@@ -7,7 +7,7 @@ from app.models import CargoType, InsuranceRequest
 router = APIRouter()
 
 
-@router.get("/calculate-insurance")
+@router.get("/calculate_insurance")
 async def calculate_insurance(declared_value: float, cargo_type: str, date: str):
     try:
         # Получение тарифа по типу груза и дате из БД получение всех значение по типу груза и дате
@@ -23,4 +23,14 @@ async def calculate_insurance(declared_value: float, cargo_type: str, date: str)
 
     except Exception as e:
         logger.error(f"Error calculating insurance: {e}")
+        return {"error": str(e)}
+
+
+@router.post("/add_tariff")
+async def add_tariff(cargo_type: str, rate: float, date: str):
+    try:
+        await CargoType.create(name=cargo_type, rate=rate, date=date)
+        return {"status": "ok"}
+    except Exception as e:
+        logger.error(f"Error adding tariff: {e}")
         return {"error": str(e)}
