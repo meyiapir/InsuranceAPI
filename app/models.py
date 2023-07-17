@@ -2,7 +2,7 @@ from tortoise import fields
 from tortoise.models import Model
 
 
-class CargoType(Model):
+class CargoType(Model):  # Модель типа груза
     id = fields.IntField(pk=True)
     name = fields.CharField(max_length=255)
     rate = fields.FloatField()
@@ -12,7 +12,7 @@ class CargoType(Model):
         return self.name
 
 
-class InsuranceRequest(Model):
+class InsuranceRequest(Model):  # Модель запроса на страховку
     id = fields.IntField(pk=True)
     rate = fields.FloatField()
     cargo_type = fields.ForeignKeyField('models.CargoType', related_name='insurance_requests')
