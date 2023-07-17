@@ -1,4 +1,4 @@
-import asyncio
+import os
 
 from fastapi import FastAPI
 from app.api import router
@@ -12,6 +12,10 @@ api_app = FastAPI()
 api_app.include_router(router)
 
 if __name__ == "__main__":
-    run_async(init_db())
-    run_async(load_tariff_to_db('tariff.json'))
-    uvicorn.run(api_app, host="0.0.0.0", port=8000)
+    try:
+        print("Starting server...")
+        run_async(init_db())
+        run_async(load_tariff_to_db('app/tariff.json'))
+        uvicorn.run(api_app, host="0.0.0.0", port=8000)
+    except Exception as e:
+        print(e)

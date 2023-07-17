@@ -7,10 +7,11 @@ async def load_tariff_to_db(filename):
     with open(filename, 'r') as file:
         tariff = json.load(file)
 
-    for date_type in tariff.items():
-        for tariff_data in date_type[1]:
+    for date, tariff_data_list in tariff.items():
+        for tariff_data in tariff_data_list:
             cargo_type = tariff_data['cargo_type']
             rate = tariff_data['rate']
-            await CargoType.get_or_create(name=cargo_type, rate=rate, date=date_type[0])
-
-
+            try:
+                await CargoType.get_or_create(name=cargo_type, rate=rate, date=date)
+            except Exception as e:
+                print(f"Ошибка при создании объекта CargoType: {e}")

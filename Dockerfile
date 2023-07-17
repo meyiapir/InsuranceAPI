@@ -1,10 +1,15 @@
 FROM python:3.9
 
-WORKDIR /app
+EXPOSE 8000
 
-COPY requirements.txt /app
+WORKDIR /
+
+COPY requirements.txt /
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . /app
+RUN mkdir /app
+COPY /app /app
+COPY main.py /
+COPY .env /
 
 CMD ["python", "main.py"]
