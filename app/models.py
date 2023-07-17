@@ -6,6 +6,7 @@ class CargoType(Model):
     id = fields.IntField(pk=True)
     name = fields.CharField(max_length=255)
     rate = fields.FloatField()
+    date = fields.DateField()
 
     def __str__(self):
         return self.name

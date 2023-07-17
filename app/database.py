@@ -1,10 +1,19 @@
-from tortoise import Tortoise
+import os
 
-DB_IP = 'localhost'
-DB_PORT = '5432'
-DB_NAME = 'insurancedb'
-DB_USER = 'api_user'
-DB_PASS = 'De1tY0urM0m'
+from tortoise import Tortoise
+from dotenv import load_dotenv
+
+load_dotenv()
+
+DB_IP = os.getenv('DB_IP')
+DB_PORT = os.getenv('DB_PORT')
+DB_NAME = os.getenv('DB_NAME')
+DB_USER = os.getenv('DB_USER')
+DB_PASS = os.getenv('DB_PASS')
+
+if not DB_IP or not DB_PORT or not DB_NAME or not DB_USER or not DB_PASS:
+    raise Exception('Database credentials not found')
+
 
 async def init_db():
     await Tortoise.init(
@@ -12,3 +21,4 @@ async def init_db():
         modules={'models': ['app.models']}
     )
     await Tortoise.generate_schemas()
+    print('Database initialized')

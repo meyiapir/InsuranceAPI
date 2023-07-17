@@ -6,3 +6,5 @@ loguru==0.7.0
 tortoise-orm==0.19.3
 asyncpg==0.28.0
 
+
+python-dotenv==1.0.0
