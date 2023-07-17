@@ -30,3 +30,10 @@
 - rate - Ставка - int
 - date - Дата начала действия тарифа - str(YYYY-MM-DD)
 
+## Используемые технологии
+- FastAPI
+- PostgreSQL
+- Docker
+- Docker-compose
+- Tortoise ORM
+- Python 3.9
