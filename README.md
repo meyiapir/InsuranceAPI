@@ -20,20 +20,20 @@
 
 ## Документация
 
-`/calculate_insurance` - GET 
-- declared_value - Объявленная стоимость - int
-- cargo_type - Тип груза - str
-- date - Дата отправления - str(YYYY-MM-DD)
+`/calculate_insurance` - `GET` 
+- `declared_value` - Объявленная стоимость - `int`
+- `cargo_type` - Тип груза - `str`
+- `date` - Дата отправления - `str(YYYY-MM-DD)`
 
-`/add_tariff` - POST
-- cargo_type - Тип груза - str
-- rate - Ставка - int
-- date - Дата начала действия тарифа - str(YYYY-MM-DD)
+`/add_tariff` - `POST`
+- `cargo_type` - Тип груза - `str`
+- `rate` - Ставка - `int`
+- `date` - Дата начала действия тарифа - `str(YYYY-MM-DD)`
 
 ## Используемые технологии
-- FastAPI
-- PostgreSQL
-- Docker
-- Docker-compose
-- Tortoise ORM
-- Python 3.9
+- **FastAPI**
+- **PostgreSQL**
+- **Docker**
+- **Docker-compose**
+- **Tortoise ORM**
+- **Python 3.9**
